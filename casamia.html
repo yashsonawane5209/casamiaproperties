@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CasaMia Estates</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d1b2a;
+      --card: #12263a;
+      --accent: #6bd0ff;
+      --accent-2: #9ef01a;
+      --text: #e9f1f7;
+      --muted: #a3b6c5;
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at 20% 20%, rgba(107, 208, 255, 0.07), transparent 20%),
+                  radial-gradient(circle at 80% 10%, rgba(158, 240, 26, 0.08), transparent 18%),
+                  radial-gradient(circle at 80% 80%, rgba(107, 208, 255, 0.05), transparent 20%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      background: rgba(13, 27, 42, 0.8);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 1.05rem;
+    }
+
+    .brand span {
+      color: var(--accent);
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 22px;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--accent-2);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #0d1b2a;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: var(--shadow);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 24px 96px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+      align-items: center;
+      padding: 32px;
+      margin: 26px 0 32px;
+      background: linear-gradient(140deg, rgba(107, 208, 255, 0.12), rgba(18, 38, 58, 0.9));
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 3vw + 1rem, 3rem);
+      line-height: 1.15;
+    }
+
+    .hero p {
+      color: var(--muted);
+      margin: 0 0 18px;
+    }
+
+    .stats {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .stat {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 14px 16px;
+      border-radius: 14px;
+      min-width: 140px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.25rem;
+      color: var(--accent-2);
+    }
+
+    .section {
+      margin: 48px 0;
+    }
+
+    .section h2 {
+      margin: 0 0 12px;
+      font-size: 1.6rem;
+    }
+
+    .section p.lead {
+      margin: 0 0 20px;
+      color: var(--muted);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(107, 208, 255, 0.15);
+      color: var(--accent);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      border: 1px solid rgba(107, 208, 255, 0.3);
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .price {
+      font-weight: 700;
+      color: var(--accent-2);
+      font-size: 1.05rem;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .outline {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid rgba(107, 208, 255, 0.6);
+      box-shadow: none;
+    }
+
+    .outline:hover {
+      background: rgba(107, 208, 255, 0.08);
+      transform: none;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .service {
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+    }
+
+    .highlight {
+      background: linear-gradient(135deg, rgba(107, 208, 255, 0.18), rgba(158, 240, 26, 0.12));
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      align-items: center;
+    }
+
+    .about img {
+      width: 100%;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: var(--shadow);
+      object-fit: cover;
+      max-height: 320px;
+    }
+
+    form {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    label {
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.95rem;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(107, 208, 255, 0.15);
+    }
+
+    textarea { resize: vertical; min-height: 120px; }
+
+    .pill {
+      padding: 6px 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 999px;
+      font-size: 0.85rem;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer {
+      margin-top: 72px;
+      padding: 26px 24px 48px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      nav { display: none; }
+      .hero { padding: 24px; }
+      .nav { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <a class="brand" href="#top">Casa<span>Mia</span> Estates</a>
+      <nav>
+        <a href="#homes" class="active">Listings</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn" href="#contact">Book a Tour</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div>
+        <div class="pill">Modern living on your terms</div>
+        <h1>Your next home, curated by CasaMia.</h1>
+        <p>We match discerning buyers and investors with verified homes, villas, and penthouses across the city. Private showings, transparent pricing, concierge closing.</p>
+        <div class="cta-row">
+          <a class="btn" href="#homes">View Listings</a>
+          <a class="btn outline" href="#contact">Talk to an agent</a>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <strong>550+</strong>
+            Transactions closed
+          </div>
+          <div class="stat">
+            <strong>98%</strong>
+            Client satisfaction
+          </div>
+          <div class="stat">
+            <strong>24h</strong>
+            Response time SLA
+          </div>
+        </div>
+      </div>
+      <div class="card highlight">
+        <span class="badge">Featured</span>
+        <h3>Skyline Penthouse</h3>
+        <p>3 Bed • 3.5 Bath • 2,400 sqft • Private terrace</p>
+        <div class="meta">
+          <span class="pill">Downtown Marina</span>
+          <span class="pill">City + Sea View</span>
+          <span class="pill">Concierge</span>
+        </div>
+        <div class="price">$1,150,000</div>
+        <div class="cta-row">
+          <button class="btn" data-action="book" data-name="Skyline Penthouse">Schedule tour</button>
+          <button class="btn outline" data-action="details" data-name="Skyline Penthouse">View details</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="homes">
+      <h2>Exclusive listings</h2>
+      <p class="lead">Handpicked, verified, and ready for a private showing.</p>
+      <div class="card-grid" id="property-grid"></div>
+    </section>
+
+    <section class="section" id="services">
+      <h2>What we do best</h2>
+      <p class="lead">From the first call to the keys in your hand, we manage every detail.</p>
+      <div class="services">
+        <div class="service">
+          <h3>Buyer Advisory</h3>
+          <p>Market intel, pricing guidance, and negotiation strategy tailored to your goals.</p>
+        </div>
+        <div class="service">
+          <h3>Seller Representation</h3>
+          <p>Listing prep, premium photography, targeted campaigns, and vetted viewings.</p>
+        </div>
+        <div class="service">
+          <h3>Investment Concierge</h3>
+          <p>Yield modeling, rental management partners, and off-market deal flow.</p>
+        </div>
+        <div class="service">
+          <h3>Relocation Support</h3>
+          <p>Area tours, schooling guidance, and settling-in services with trusted partners.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about" id="about">
+      <div>
+        <h2>About CasaMia Estates</h2>
+        <p class="lead">A boutique team of licensed experts driven by trust, design sense, and precise execution.</p>
+        <p>We believe every client deserves clarity. That means verified listings, transparent comps, and direct access to the people doing the work. Our agents speak the language of investors and the needs of families relocating across town—or across borders.</p>
+        <div class="stats">
+          <div class="stat">
+            <strong>12 yrs</strong>
+            Local expertise
+          </div>
+          <div class="stat">
+            <strong>42</strong>
+            Off-market partners
+          </div>
+          <div class="stat">
+            <strong>4.9★</strong>
+            Client rating
+          </div>
+        </div>
+      </div>
+      <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80" alt="Modern living room with city view">
+    </section>
+
+    <section class="section" id="contact">
+      <h2>Plan your next move</h2>
+      <p class="lead">Tell us what you’re looking for and we’ll curate options within 24 hours.</p>
+      <div class="card">
+        <form id="contact-form">
+          <label>Name <span class="pill" id="name-hint">Required</span></label>
+          <input type="text" id="name" name="name" placeholder="Your full name" required>
+
+          <label>Email <span class="pill">We keep it private</span></label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+
+          <label>Budget & timeline</label>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px;">
+            <input type="text" id="budget" name="budget" placeholder="$750k - $1.2M">
+            <select id="timeline" name="timeline">
+              <option value="">Select timeline</option>
+              <option>Ready now</option>
+              <option>30-60 days</option>
+              <option>3-6 months</option>
+              <option>Exploring options</option>
+            </select>
+          </div>
+
+          <label>What matters most?</label>
+          <textarea id="message" name="message" placeholder="Neighborhoods, must-haves, lifestyle notes..." required></textarea>
+
+          <div class="cta-row">
+            <button type="submit" class="btn">Send request</button>
+            <button type="reset" class="btn outline">Reset</button>
+          </div>
+          <div id="form-status" style="color: var(--accent-2); font-weight: 600;"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    CasaMia Estates • Boutique real estate advisory • Reach us at +1 (555) 011-2040
+  </footer>
+
+  <script>
+    const listings = [
+      {
+        name: 'Harborfront Loft',
+        desc: '2 Bed • 2 Bath • 1,450 sqft • Floor-to-ceiling glass',
+        area: 'Waterfront District',
+        tag: 'New',
+        price: '$845,000'
+      },
+      {
+        name: 'Garden Villa',
+        desc: '4 Bed • 4.5 Bath • 3,800 sqft • Pool + courtyard',
+        area: 'Palm Grove',
+        tag: 'Private',
+        price: '$1,420,000'
+      },
+      {
+        name: 'Midtown Duplex',
+        desc: '3 Bed • 3 Bath • 2,050 sqft • Skyline balcony',
+        area: 'Midtown Core',
+        tag: 'Hot',
+        price: '$1,080,000'
+      },
+      {
+        name: 'Hillside Retreat',
+        desc: '5 Bed • 5.5 Bath • 4,600 sqft • Infinity edge pool',
+        area: 'Canyon Ridge',
+        tag: 'Scenic',
+        price: '$2,250,000'
+      }
+    ];
+
+    const grid = document.getElementById('property-grid');
+    listings.forEach(home => {
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      const badge = document.createElement('span');
+      badge.className = 'badge';
+      badge.textContent = home.tag;
+      card.appendChild(badge);
+
+      const title = document.createElement('h3');
+      title.textContent = home.name;
+      card.appendChild(title);
+
+      const desc = document.createElement('p');
+      desc.textContent = home.desc;
+      card.appendChild(desc);
+
+      const meta = document.createElement('div');
+      meta.className = 'meta';
+      meta.innerHTML = '<span class="pill">' + home.area + '</span><span class="pill">Verified</span>';
+      card.appendChild(meta);
+
+      const price = document.createElement('div');
+      price.className = 'price';
+      price.textContent = home.price;
+      card.appendChild(price);
+
+      const actions = document.createElement('div');
+      actions.className = 'cta-row';
+      actions.innerHTML = '<button class="btn" data-action="book" data-name="' + home.name +
+        '">Book tour</button><button class="btn outline" data-action="details" data-name="' + home.name +
+        '">View details</button>';
+      card.appendChild(actions);
+
+      grid.appendChild(card);
+    });
+
+    const links = document.querySelectorAll('nav a');
+    const sections = ['homes', 'services', 'about', 'contact'].map(id => document.getElementById(id));
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const id = entry.target.id;
+        const link = Array.from(links).find(l => l.getAttribute('href') === '#' + id);
+        if (link) {
+          link.classList.toggle('active', entry.isIntersecting);
+        }
+      });
+    }, { threshold: 0.35 });
+    sections.forEach(section => observer.observe(section));
+
+    document.body.addEventListener('click', event => {
+      const target = event.target;
+      if (target.dataset.action === 'book') {
+        const name = target.dataset.name;
+        document.getElementById('message').value = 'I want to schedule a tour for ' + name + '.';
+        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+      }
+      if (target.dataset.action === 'details') {
+        alert('We will send full details for ' + target.dataset.name + ' to your email.');
+      }
+    });
+
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+    const nameField = document.getElementById('name');
+    const nameHint = document.getElementById('name-hint');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = nameField.value.trim();
+      if (!name) {
+        nameHint.textContent = 'Name is required';
+        nameHint.style.color = '#ffb3b3';
+        return;
+      }
+      nameHint.textContent = 'Required';
+      nameHint.style.color = 'var(--muted)';
+      status.textContent = 'Thanks ' + name + '! An agent will reach out shortly.';
+      form.reset();
+    });
+  </script>
+</body>
+</html>
