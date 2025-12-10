@@ -9,12 +9,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0d1b2a;
-      --card: #12263a;
-      --accent: #6bd0ff;
-      --accent-2: #9ef01a;
-      --text: #e9f1f7;
-      --muted: #a3b6c5;
+      --bg: #0b1224;
+      --card: rgba(20, 29, 48, 0.9);
+      --accent: #5fd0ff;
+      --accent-2: #f5c14f;
+      --text: #f3f6fa;
+      --muted: #b7c7dd;
       --shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
     }
 
@@ -23,10 +23,9 @@
     body {
       margin: 0;
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: radial-gradient(circle at 20% 20%, rgba(107, 208, 255, 0.07), transparent 20%),
-                  radial-gradient(circle at 80% 10%, rgba(158, 240, 26, 0.08), transparent 18%),
-                  radial-gradient(circle at 80% 80%, rgba(107, 208, 255, 0.05), transparent 20%),
-                  var(--bg);
+      background:
+        linear-gradient(120deg, rgba(95, 208, 255, 0.12), rgba(11, 18, 36, 0.94)),
+        url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80') center/cover fixed;
       color: var(--text);
       line-height: 1.6;
       scroll-behavior: smooth;
@@ -48,6 +47,8 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 16px 24px;
+      background: linear-gradient(90deg, rgba(20, 29, 48, 0.85), rgba(20, 29, 48, 0.65));
+      border-radius: 12px;
     }
 
     .brand {
@@ -83,20 +84,20 @@
       align-items: center;
       gap: 8px;
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #0d1b2a;
+      color: #0b1224;
       padding: 12px 16px;
       border-radius: 10px;
       border: none;
       cursor: pointer;
       font-weight: 700;
       text-decoration: none;
-      box-shadow: var(--shadow);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 12px 40px rgba(95, 208, 255, 0.35);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
     }
 
     .btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 16px 40px rgba(245, 193, 79, 0.35);
     }
 
     main {
@@ -112,10 +113,15 @@
       align-items: center;
       padding: 32px;
       margin: 26px 0 32px;
-      background: linear-gradient(140deg, rgba(107, 208, 255, 0.12), rgba(18, 38, 58, 0.9));
+      background:
+        linear-gradient(140deg, rgba(12, 18, 34, 0.78), rgba(12, 23, 46, 0.94)),
+        url('https://images.unsplash.com/photo-1501045661006-fcebe0257c3f?auto=format&fit=crop&w=1400&q=80') center/cover;
       border: 1px solid rgba(255, 255, 255, 0.04);
       border-radius: 22px;
       box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(2px);
     }
 
     .hero h1 {
@@ -123,12 +129,14 @@
       font-size: clamp(2rem, 3vw + 1rem, 3rem);
       line-height: 1.15;
       overflow-wrap: anywhere;
+      text-shadow: 0 12px 28px rgba(0, 0, 0, 0.55);
     }
 
     .hero p {
       color: var(--muted);
       margin: 0 0 18px;
       overflow-wrap: anywhere;
+      text-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
     }
 
     .stats {
@@ -173,7 +181,7 @@
     }
 
     .card {
-      background: var(--card);
+      background: linear-gradient(180deg, rgba(32, 45, 71, 0.9), rgba(20, 29, 48, 0.94));
       border-radius: 16px;
       border: 1px solid rgba(255, 255, 255, 0.05);
       box-shadow: var(--shadow);
@@ -183,6 +191,12 @@
       gap: 12px;
       position: relative;
       overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
     }
 
     .badge {
@@ -249,9 +263,15 @@
 
     .service {
       padding: 16px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: linear-gradient(180deg, rgba(32, 45, 71, 0.65), rgba(20, 29, 48, 0.9));
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 14px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .service:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
     }
 
     .highlight {
@@ -264,15 +284,32 @@
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
       align-items: center;
+      background: linear-gradient(180deg, rgba(32, 45, 71, 0.9), rgba(20, 29, 48, 0.96));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: var(--shadow);
     }
 
     .about img {
       width: 100%;
-      border-radius: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
       box-shadow: var(--shadow);
       object-fit: cover;
       max-height: 320px;
+    }
+
+    /* Scroll-in reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     form {
@@ -361,7 +398,7 @@
   </header>
 
   <main id="top">
-    <section class="hero">
+    <section class="hero reveal">
       <div>
         <div class="pill">Your lifestyle Architect</div>
         <h1>Your next home, curated by CasaMia.</h1>
@@ -399,13 +436,13 @@
       </div>
     </section>
 
-    <section class="section" id="homes">
+    <section class="section reveal" id="homes">
       <h2>Exclusive listings</h2>
       <p class="lead">Handpicked, verified, and ready for a private showing.</p>
       <div class="card-grid" id="property-grid"></div>
     </section>
 
-    <section class="section" id="services">
+    <section class="section reveal" id="services">
       <h2>What we do best</h2>
       <p class="lead">From the first call to the keys in your hand, we manage every detail.</p>
       <div class="services">
@@ -428,7 +465,7 @@
       </div>
     </section>
 
-    <section class="section about" id="about">
+    <section class="section about reveal" id="about">
       <div>
         <h2>About CasaMia Properties</h2>
         <p class="lead">Our Mission</p>
@@ -452,7 +489,7 @@
       <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80" alt="Modern living room with city view">
     </section>
 
-    <section class="section" id="contact">
+    <section class="section reveal" id="contact">
       <h2>Plan your next move</h2>
       <p class="lead">Tell us what you’re looking for and we’ll curate options within 24 hours.</p>
       <div class="card">
@@ -521,7 +558,7 @@
     const grid = document.getElementById('property-grid');
     listings.forEach(home => {
       const card = document.createElement('div');
-      card.className = 'card';
+      card.className = 'card reveal';
 
       const badge = document.createElement('span');
       badge.className = 'badge';
@@ -565,9 +602,13 @@
         if (link) {
           link.classList.toggle('active', entry.isIntersecting);
         }
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
       });
     }, { threshold: 0.35 });
     sections.forEach(section => observer.observe(section));
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
     document.body.addEventListener('click', event => {
       const target = event.target;
