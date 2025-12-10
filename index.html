@@ -122,11 +122,13 @@
       margin: 0 0 12px;
       font-size: clamp(2rem, 3vw + 1rem, 3rem);
       line-height: 1.15;
+      overflow-wrap: anywhere;
     }
 
     .hero p {
       color: var(--muted);
       margin: 0 0 18px;
+      overflow-wrap: anywhere;
     }
 
     .stats {
@@ -328,15 +330,26 @@
 
     @media (max-width: 640px) {
       nav { display: none; }
-      .hero { padding: 24px; }
       .nav { justify-content: center; }
+      main { padding: 20px 16px 72px; }
+      .hero {
+        padding: 20px;
+        margin: 16px 0 20px;
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+      .hero h1 { font-size: clamp(1.6rem, 6vw + 1rem, 2.4rem); }
+      .hero p { font-size: 0.98rem; }
+      .card, .service { padding: 14px; }
+      .card-grid { grid-template-columns: 1fr; }
+      .stats { gap: 10px; }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="nav">
-      <a class="brand" href="#top">Casa<span>Mia</span> Estates</a>
+      <a class="brand" href="#top">CasaMia</span> Properties</a>
       <nav>
         <a href="#homes" class="active">Listings</a>
         <a href="#services">Services</a>
@@ -350,20 +363,17 @@
   <main id="top">
     <section class="hero">
       <div>
-        <div class="pill">Modern living on your terms</div>
+        <div class="pill">Your lifestyle Architect</div>
         <h1>Your next home, curated by CasaMia.</h1>
-        <p>We match discerning buyers and investors with verified homes, villas, and penthouses across the city. Private showings, transparent pricing, concierge closing.</p>
+        <p>Beyond Property, Beyond Transaction: Your Lifestyle Arcitect in Mumbai, Navi Mumbai & Thane.</p>
         <div class="cta-row">
           <a class="btn" href="#homes">View Listings</a>
-          <a class="btn outline" href="#contact">Talk to an agent</a>
+          <a class="btn outline" href="tel:+919136775526" id="call-btn" data-number="+91 9136775526">Get Started Now</a>
         </div>
         <div class="stats">
+      
           <div class="stat">
-            <strong>550+</strong>
-            Transactions closed
-          </div>
-          <div class="stat">
-            <strong>98%</strong>
+            <strong>100%</strong>
             Client satisfaction
           </div>
           <div class="stat">
@@ -381,7 +391,7 @@
           <span class="pill">City + Sea View</span>
           <span class="pill">Concierge</span>
         </div>
-        <div class="price">$1,150,000</div>
+        <div class="price">₹1,150,000</div>
         <div class="cta-row">
           <button class="btn" data-action="book" data-name="Skyline Penthouse">Schedule tour</button>
           <button class="btn outline" data-action="details" data-name="Skyline Penthouse">View details</button>
@@ -420,12 +430,13 @@
 
     <section class="section about" id="about">
       <div>
-        <h2>About CasaMia Estates</h2>
-        <p class="lead">A boutique team of licensed experts driven by trust, design sense, and precise execution.</p>
-        <p>We believe every client deserves clarity. That means verified listings, transparent comps, and direct access to the people doing the work. Our agents speak the language of investors and the needs of families relocating across town—or across borders.</p>
+        <h2>About CasaMia Properties</h2>
+        <p class="lead">Our Mission</p>
+        <p>At CasaMia Properties, we believe real estate is more than a property transaction: it's about enabling lifestyles. We are on a mission to transform how residents and investors approach property decisions, replacing confusion with clarity, pressure with partnership, and transactions with relationships.
+        </p>
         <div class="stats">
           <div class="stat">
-            <strong>12 yrs</strong>
+            <strong>10 yrs</strong>
             Local expertise
           </div>
           <div class="stat">
@@ -452,16 +463,10 @@
           <label>Email <span class="pill">We keep it private</span></label>
           <input type="email" id="email" name="email" placeholder="you@example.com" required>
 
-          <label>Budget & timeline</label>
+          <label>Phone number</label>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px;">
-            <input type="text" id="budget" name="budget" placeholder="$750k - $1.2M">
-            <select id="timeline" name="timeline">
-              <option value="">Select timeline</option>
-              <option>Ready now</option>
-              <option>30-60 days</option>
-              <option>3-6 months</option>
-              <option>Exploring options</option>
-            </select>
+            <input type="tel" id="phone" name="phone" placeholder="+91 XXXXXXXXXX" pattern="\\+?[0-9\\s\\-]{7,15}" required>
+            <input type="text" id="budget" name="budget" placeholder="Budget or timeline (optional)">
           </div>
 
           <label>What matters most?</label>
@@ -478,7 +483,7 @@
   </main>
 
   <footer class="footer">
-    CasaMia Estates • Boutique real estate advisory • Reach us at +1 (555) 011-2040
+    @CasaMia Properties • Boutique real estate advisory • Reach us at +91 9136775526
   </footer>
 
   <script>
@@ -488,28 +493,28 @@
         desc: '2 Bed • 2 Bath • 1,450 sqft • Floor-to-ceiling glass',
         area: 'Waterfront District',
         tag: 'New',
-        price: '$845,000'
+        price: '₹845,000'
       },
       {
         name: 'Garden Villa',
         desc: '4 Bed • 4.5 Bath • 3,800 sqft • Pool + courtyard',
         area: 'Palm Grove',
         tag: 'Private',
-        price: '$1,420,000'
+        price: '₹1,420,000'
       },
       {
         name: 'Midtown Duplex',
         desc: '3 Bed • 3 Bath • 2,050 sqft • Skyline balcony',
         area: 'Midtown Core',
         tag: 'Hot',
-        price: '$1,080,000'
+        price: '₹1,080,000'
       },
       {
         name: 'Hillside Retreat',
         desc: '5 Bed • 5.5 Bath • 4,600 sqft • Infinity edge pool',
         area: 'Canyon Ridge',
         tag: 'Scenic',
-        price: '$2,250,000'
+        price: '₹2,250,000'
       }
     ];
 
@@ -576,10 +581,26 @@
       }
     });
 
+    // "Get Started Now" opens dialer
+    const callBtn = document.getElementById('call-btn');
+    if (callBtn) {
+      callBtn.addEventListener('click', () => {
+        const phone = callBtn.dataset.number || '+91 9136775526';
+        window.location.href = 'tel:' + phone.replace(/[^0-9+]/g, '');
+      });
+    }
+
     const form = document.getElementById('contact-form');
     const status = document.getElementById('form-status');
     const nameField = document.getElementById('name');
     const nameHint = document.getElementById('name-hint');
+    const phoneField = document.getElementById('phone');
+    const RECIPIENT_EMAIL = 'youremail@example.com'; // TODO: replace with your email
+
+    // Prevent non-numeric characters in phone (allows +, space, and -)
+    phoneField.addEventListener('input', () => {
+      phoneField.value = phoneField.value.replace(/[^0-9+\-\s]/g, '');
+    });
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -591,7 +612,23 @@
       }
       nameHint.textContent = 'Required';
       nameHint.style.color = 'var(--muted)';
-      status.textContent = 'Thanks ' + name + '! An agent will reach out shortly.';
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const budget = document.getElementById('budget').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      // Build mailto link with prefilled body
+      const subject = encodeURIComponent('New inquiry from ' + name);
+      const body = encodeURIComponent(
+        'Name: ' + name + '\\n' +
+        'Email: ' + email + '\\n' +
+        'Phone: ' + phone + '\\n' +
+        'Budget/Timeline: ' + (budget || 'Not provided') + '\\n' +
+        '\\nDetails:\\n' + message
+      );
+
+      window.location.href = 'mailto:' + RECIPIENT_EMAIL + '?subject=' + subject + '&body=' + body;
+      status.textContent = 'Thanks ' + name + '! We\'re opening your email app to send the request.';
       form.reset();
     });
   </script>
